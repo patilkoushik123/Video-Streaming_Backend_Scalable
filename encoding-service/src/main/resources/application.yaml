@@ -1,0 +1,49 @@
+spring:
+  application:
+    name: encoding-service
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: encoding-service-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring:
+          json:
+            trusted:
+              packages: "*"
+            use:
+              type:
+                headers: false
+            value:
+              default:
+                type: com.netflix.encodingservice.service.event.VideoUploadedEvent
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+server:
+  port: 8083
+  
+#AWS configuration
+aws:
+  access-key: ${AWS_ACCESS_KEY:XXXXX}
+  secret-key: ${AWS_SECRET_KEY:XXXXX}
+  region: ${AWS_REGION:XXXXX}
+  s3:
+    bucket-name: ${AWS_BUCKET_NAME:XXXXX}
+
+#FFmpeg Configuration
+ffmpeg:
+  path: ${FFMPEG_PATH:C:/ffmpeg/bin/ffmpeg.exe}
+
+#Temp directory for encoding
+encoding:
+  base-path: ${TEMP_DIR:C:/temp/encoding}  // stores the files temperarely in laptop c drive,so that ffmpeg can perform the encoding on that raw video
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info

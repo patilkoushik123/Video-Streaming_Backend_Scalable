@@ -1,0 +1,53 @@
+package com.netflix.contentservice.dto;
+
+import java.time.LocalDateTime;
+
+import com.netflix.contentservice.model.Genre;
+import com.netflix.contentservice.model.VideoStatus;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+public class MovieResponse {
+	
+	private String id;
+	
+
+	private String title;
+	
+	
+	private String description;
+	
+	private Genre genre;
+	
+	private String director;
+	private String cast;
+	private int releaseYear;
+	private double rating;
+	private String thumbnailUrl;
+	private int durationMinutes;
+	
+	private String videoKey;
+	
+		private String hlsUrl;
+	
+	
+
+
+	private VideoStatus videoStatus;
+	
+	private LocalDateTime createdAt;
+	
+	private LocalDateTime updatedAt;
+}
