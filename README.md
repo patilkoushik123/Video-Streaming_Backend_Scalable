@@ -247,4 +247,3 @@ It brings together backend development and video-processing workflows in an end-
 
 ---
 
-**Disclaimer:** This is an independent learning project inspired by modern video streaming architectures. It is not affiliated with or an implementation of Netflix's internal systems.
